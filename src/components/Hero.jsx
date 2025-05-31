@@ -363,7 +363,7 @@ const Hero = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'openai/gpt-3.5-turbo',
+          model: 'openai/gpt-3.5-turbo-instruct',
           messages: [
             { role: 'system', content: 'You are a helpful assistant for web development and cybersecurity.' },
             ...chatMessages.map(m => ({ role: m.user ? 'user' : 'assistant', content: m.text })),

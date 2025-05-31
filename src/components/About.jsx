@@ -415,25 +415,25 @@ const focusItems = [
 const About = () => (
   <AboutSection id="about">
     <Container>
-      <Card
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
+        <Card
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
         style={{ maxWidth: '450px', margin: '0 auto' }}
-      >
-        <Title>About Me</Title>
-        <Subtitle>{about.subtitle}</Subtitle>
-        <Bio>{about.bio}</Bio>
-      </Card>
-      <RadarCard
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        viewport={{ once: true }}
+        >
+          <Title>About Me</Title>
+          <Subtitle>{about.subtitle}</Subtitle>
+          <Bio>{about.bio}</Bio>
+        </Card>
+        <RadarCard
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          viewport={{ once: true }}
         style={{ maxWidth: '450px', margin: '0 auto' }}
-      >
-        <RadarTitle>Technical Proficiency Matrix</RadarTitle>
+        >
+          <RadarTitle>Technical Proficiency Matrix</RadarTitle>
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
@@ -443,7 +443,7 @@ const About = () => (
         >
           <Radar data={radarData} options={radarOptions} />
         </motion.div>
-        <SkillStats>
+          <SkillStats>
           {skillStats.slice(0, 6).map(({ label, value, icon: Icon }, i) => (
             <Stat
               key={label}
@@ -456,9 +456,9 @@ const About = () => (
             >
               <Icon /> {label} <span style={{ marginLeft: 'auto', fontWeight: 700 }}>{value}</span>
             </Stat>
-          ))}
-        </SkillStats>
-      </RadarCard>
+            ))}
+          </SkillStats>
+        </RadarCard>
     </Container>
     <FocusSection>
       <FocusTitle
