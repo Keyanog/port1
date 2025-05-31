@@ -1,0 +1,125 @@
+Name: Nazif Keyan
+Role: Computer Science Student & Cybersecurity Enthusiast
+Location: Bangladesh
+Email: nazif.keyan@gmail.com
+Age: 15
+First Name: Nazif
+Surname: Keyan
+Education:
+- Currently pursuing Computer Science degree
+- Focus on Web Development and Cybersecurity
+
+Skills:
+- Web Development: React, Node.js, MongoDB
+- Programming: Python
+- Security: Cloud Security, SIEM, Penetration Testing
+- Frontend: Modern UI/UX, Responsive Design
+- Additional: Database Management, API Integration
+
+Technical Expertise:
+- Frontend Frameworks: React, Vue.js
+- Backend Technologies: Node.js, Express
+- Databases: MongoDB, MySQL
+- Version Control: Git, GitHub
+- Development Tools: VS Code, Postman
+- Security Tools: Wireshark, Metasploit
+- Cloud Platforms: AWS (Basic Understanding)
+
+Projects:
+- Portfolio Website with AI Integration
+  * Features: Dual AI Chatbots, Particle Animation
+  * Technologies: React, Vite, OpenRouter API
+  * Purpose: Showcase technical skills and interactive UI capabilities
+- Cybersecurity Tools and Scripts
+- Web Application Security Testing Projects
+
+Achievements:
+- Completed multiple online courses in Web Development
+- Built a fully functional portfolio with AI integration
+- Successfully implemented secure coding practices
+- Active participation in coding communities
+
+Interests:
+- Coding and Web Development
+- Cybersecurity Research
+- Learning New Technologies
+- Reading Tech Blogs
+- Exploring Web Security
+- Participating in CTF Competitions
+- Contributing to Open Source Projects
+- Exploring AI and Machine Learning
+
+Goals:
+- Become a Full-Stack Security Engineer
+- Contribute to Open Source Security Projects
+- Develop Secure Web Applications
+- Research in Advanced Cybersecurity
+- Obtain Professional Certifications
+- Build a Strong Online Presence
+
+About Me:
+I am a passionate developer focused on building secure and modern web applications. I combine my knowledge of web development with cybersecurity practices to create robust solutions. My approach integrates security considerations from the ground up, ensuring that applications are not just functional but also secure.
+
+Experience:
+- Web Development Projects
+- Security Auditing
+- Vulnerability Assessment
+- Secure Code Review
+- Cloud Security Implementation
+- Frontend Development
+- API Integration
+- Database Management
+
+Languages:
+- English (Professional)
+- Bengali (Native)
+
+Certifications:
+- Various Web Development Certifications
+- Security Training Completions
+- Cloud Platform Certifications
+
+Soft Skills:
+- Problem Solving
+- Critical Thinking
+- Team Collaboration
+- Time Management
+- Self-motivated Learner
+- Effective Communication
+- Attention to Detail
+
+Current Learning Focus:
+- Advanced React Patterns
+- Cloud Security Best Practices
+- Ethical Hacking Techniques
+- Modern UI/UX Design
+- DevSecOps Practices
+
+Community Involvement:
+- Active on GitHub
+- Tech Blog Reader
+- Coding Community Participant
+- Knowledge Sharing
+
+Fun Facts & Jokes:
+- Why did I get kicked out of the cybersecurity conference? They said I was too good at "penetration testing" their coffee machine!
+- What's my favorite type of encryption? ROT13 - because it works both ways, just like my debugging process!
+- How many programmers does it take to change a light bulb? None, that's a hardware problem!
+- My code is so secure, even I can't access it sometimes. I call that "unintentional two-factor authentication"!
+- What's my favorite programming language? Python, because it's the only snake I'm not afraid of!
+- Why do I always carry a packet sniffer? Because you never know when you need to debug your breakfast network!
+- My favorite HTTP status code is 418 - I'm a teapot. Because sometimes you just need to brew some coffee to fix the code!
+
+Future Aspirations:
+- Launch a Tech Blog
+- Create Educational Content
+- Mentor Junior Developers
+- Speak at Tech Conferences
+- Build a Security-focused Startup
+
+Hobbies:
+- Coding Side Projects
+- Reading Tech Articles
+- Problem-Solving Challenges
+- Learning New Programming Languages
+- Participating in Hackathons 
