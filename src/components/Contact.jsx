@@ -107,17 +107,19 @@ const HeaderDescription = styled.p`
   line-height: 1.6;
 `;
 
-const ContactItem = styled.div`
+const ContactItem = styled(motion.div)`
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 0.8rem;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
   border-radius: 8px;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
 
   &:hover {
     background: rgba(255, 255, 255, 0.05);
+    transform: translateX(10px);
   }
 
   svg {
@@ -260,27 +262,6 @@ const TerminalTitle = styled.div`
   letter-spacing: 0.5px;
 `;
 
-const FormInput = styled.input`
-  width: 100%;
-  background: rgba(35, 38, 58, 0.4);
-  border: 1.5px solid ${props => props.theme.colors.card.border};
-  border-radius: 8px;
-  padding: 0.8rem 1rem;
-  color: #e3e8ff;
-  font-size: 0.95rem;
-  outline: none;
-  transition: all 0.3s ease;
-  
-  &:focus {
-    border-color: #5a8fff;
-    box-shadow: 0 0 0 2px rgba(90, 143, 255, 0.2);
-  }
-
-  &::placeholder {
-    color: rgba(227, 232, 255, 0.5);
-  }
-`;
-
 const FormTextarea = styled.textarea`
   width: 100%;
   background: rgba(35, 38, 58, 0.4);
@@ -291,8 +272,9 @@ const FormTextarea = styled.textarea`
   font-size: 0.95rem;
   outline: none;
   transition: all 0.3s ease;
-  min-height: 120px;
+  min-height: 200px;
   resize: vertical;
+  margin: 1rem 0;
   
   &:focus {
     border-color: #5a8fff;
@@ -304,12 +286,34 @@ const FormTextarea = styled.textarea`
   }
 `;
 
-const SubmitButton = styled.button`
+const FormInput = styled.input`
+  width: 100%;
+  background: rgba(35, 38, 58, 0.4);
+  border: 1.5px solid ${props => props.theme.colors.card.border};
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  color: #e3e8ff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  
+  &:focus {
+    border-color: #5a8fff;
+    box-shadow: 0 0 0 2px rgba(90, 143, 255, 0.2);
+  }
+
+  &::placeholder {
+    color: rgba(227, 232, 255, 0.5);
+  }
+`;
+
+const SubmitButton = styled(motion.button)`
   background: linear-gradient(135deg, #4B6EE8, #7C4EF1);
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 0.8rem 1.5rem;
+  padding: 1rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -319,6 +323,7 @@ const SubmitButton = styled.button`
   gap: 0.5rem;
   transition: all 0.3s ease;
   width: 100%;
+  margin-top: 1rem;
   
   &:hover {
     transform: translateY(-2px);
@@ -328,7 +333,22 @@ const SubmitButton = styled.button`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    transform: none;
   }
+
+  svg {
+    font-size: 1.2rem;
+  }
+`;
+
+const StatusMessage = styled(motion.div)`
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-align: center;
+  color: #fff;
+  background: ${props => props.success ? 'rgba(26, 255, 139, 0.2)' : 'rgba(255, 71, 87, 0.2)'};
+  border: 1px solid ${props => props.success ? '#1aff8b' : '#ff4757'};
 `;
 
 const FloatingDot = styled(motion.div)`
@@ -339,6 +359,8 @@ const FloatingDot = styled(motion.div)`
   background: ${props => props.color};
   opacity: 0.6;
   pointer-events: none;
+  top: 0;
+  transform: translateY(100px);
 `;
 
 const Contact = () => {
@@ -349,6 +371,35 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0,
+      x: -20,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -370,18 +421,18 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        setSubmitStatus('success');
+        setSubmitStatus({ success: true, message: 'Message sent successfully!' });
         setFormState({
           name: '',
           email: '',
           message: ''
         });
       } else {
-        setSubmitStatus('error');
+        setSubmitStatus({ success: false, message: 'Failed to send message. Please try again.' });
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      setSubmitStatus('error');
+      setSubmitStatus({ success: false, message: 'Failed to send message. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -395,17 +446,21 @@ const Contact = () => {
     }));
   };
 
-  // Generate floating dots
+  // Generate floating dots with fixed horizontal positions
   const dots = Array.from({ length: 20 }).map((_, i) => ({
     id: i,
     color: ['#5a8fff', '#b16cff', '#1aff8b'][i % 3],
     x: Math.random() * 100,
-    y: Math.random() * 100,
     duration: 3 + Math.random() * 2
   }));
 
   return (
-    <ContactSection>
+    <ContactSection
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
       <GlowingBackground />
       {dots.map(dot => (
         <FloatingDot
@@ -413,10 +468,9 @@ const Contact = () => {
           color={dot.color}
           style={{
             left: `${dot.x}%`,
-            top: `${dot.y}%`
           }}
           animate={{
-            y: [0, -20, 0],
+            y: [100, 80, 100],
             opacity: [0.6, 0.3, 0.6]
           }}
           transition={{
@@ -429,27 +483,30 @@ const Contact = () => {
       
       <MainHeading
         initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
       >
         Let's Connect Securely
       </MainHeading>
       
       <MainDescription
         initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        viewport={{ once: true }}
       >
         Choose your preferred secure communication channel or send an encrypted message directly through our secure form.
       </MainDescription>
 
       <ContentWrapper>
         <ContactInfoSection
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
         >
-          <div>
+          <motion.div variants={itemVariants}>
             <SectionHeader>
               <FaShieldAlt />
               <HeaderTitle>Secure Channels</HeaderTitle>
@@ -457,9 +514,15 @@ const Contact = () => {
             <HeaderDescription>
               Direct communication channels are available through multiple secure protocols. Select your preferred method of contact below.
             </HeaderDescription>
-          </div>
+          </motion.div>
 
-          <ContactItem as="a" href="mailto:nazif.keyan@gmail.com">
+          <ContactItem 
+            as={motion.a} 
+            href="mailto:nazif.keyan@gmail.com"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <IconWrapper>
               <FaEnvelope />
             </IconWrapper>
@@ -469,7 +532,15 @@ const Contact = () => {
             </ContactDetails>
           </ContactItem>
 
-          <ContactItem as="a" href="https://www.linkedin.com/in/nazifkeyan/" target="_blank" rel="noopener noreferrer">
+          <ContactItem 
+            as={motion.a} 
+            href="https://www.linkedin.com/in/nazifkeyan/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <IconWrapper>
               <FaLinkedin />
             </IconWrapper>
@@ -479,7 +550,15 @@ const Contact = () => {
             </ContactDetails>
           </ContactItem>
 
-          <ContactItem as="a" href="https://github.com/Keyanog" target="_blank" rel="noopener noreferrer">
+          <ContactItem 
+            as={motion.a} 
+            href="https://github.com/Keyanog" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <IconWrapper>
               <FaGithub />
             </IconWrapper>
@@ -489,7 +568,15 @@ const Contact = () => {
             </ContactDetails>
           </ContactItem>
 
-          <ContactItem as="a" href="https://tryhackme.com" target="_blank" rel="noopener noreferrer">
+          <ContactItem 
+            as={motion.a} 
+            href="https://tryhackme.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <IconWrapper>
               <SiTryhackme />
             </IconWrapper>
@@ -499,7 +586,15 @@ const Contact = () => {
             </ContactDetails>
           </ContactItem>
 
-          <ContactItem as="a" href="https://discord.com/users/1nazif1" target="_blank" rel="noopener noreferrer">
+          <ContactItem 
+            as={motion.a} 
+            href="https://discord.com/users/1nazif1" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <IconWrapper>
               <FaDiscord />
             </IconWrapper>
@@ -510,11 +605,7 @@ const Contact = () => {
           </ContactItem>
         </ContactInfoSection>
 
-        <SecureCommSection
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
+        <SecureCommSection>
           <TerminalHeader>
             <TerminalButton color="#ff5f56" />
             <TerminalButton color="#ffbd2e" />
@@ -522,64 +613,86 @@ const Contact = () => {
             <TerminalTitle>SECURE-TRANSMISSION://ENCRYPT</TerminalTitle>
           </TerminalHeader>
           
-          <form style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-            <div>
-              <label htmlFor="name" style={{ color: '#5a8fff', marginBottom: '0.5rem', display: 'block' }}>SENDER_ID</label>
+          <form onSubmit={handleFormSubmit}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
               <FormInput
-                id="name"
-                name="name"
                 type="text"
-                placeholder="Your name"
+                name="name"
+                placeholder="Your Name"
                 value={formState.name}
                 onChange={handleFormChange}
                 required
               />
-            </div>
+            </motion.div>
 
-            <div>
-              <label htmlFor="email" style={{ color: '#5a8fff', marginBottom: '0.5rem', display: 'block' }}>RETURN_ADDRESS</label>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              viewport={{ once: true }}
+            >
               <FormInput
-                id="email"
-                name="email"
                 type="email"
-                placeholder="Your email"
+                name="email"
+                placeholder="Your Email"
                 value={formState.email}
                 onChange={handleFormChange}
                 required
               />
-            </div>
+            </motion.div>
 
-            <div>
-              <label htmlFor="message" style={{ color: '#5a8fff', marginBottom: '0.5rem', display: 'block' }}>PAYLOAD</label>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              viewport={{ once: true }}
+            >
               <FormTextarea
-                id="message"
                 name="message"
-                placeholder="Your message"
+                placeholder="Your Message"
                 value={formState.message}
                 onChange={handleFormChange}
                 required
               />
-            </div>
+            </motion.div>
 
-            <SubmitButton type="submit" disabled={isSubmitting}>
-              {isSubmitting ? (
-                'Processing...'
-              ) : (
-                <>
-                  <FaLock /> Encrypt & Send
-                </>
-              )}
-            </SubmitButton>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              viewport={{ once: true }}
+            >
+              <SubmitButton
+                type="submit"
+                disabled={isSubmitting}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {isSubmitting ? (
+                  <>Sending...</>
+                ) : (
+                  <>
+                    <FaPaperPlane /> Send Message
+                  </>
+                )}
+              </SubmitButton>
+            </motion.div>
 
-            {submitStatus === 'success' && (
-              <div style={{ color: '#1aff8b', marginTop: '1rem', textAlign: 'center' }}>
-                Message encrypted and transmitted successfully!
-              </div>
-            )}
-            {submitStatus === 'error' && (
-              <div style={{ color: '#ff5f56', marginTop: '1rem', textAlign: 'center' }}>
-                Transmission failed. Please try again.
-              </div>
+            {submitStatus && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <StatusMessage success={submitStatus.success}>
+                  {submitStatus.message}
+                </StatusMessage>
+              </motion.div>
             )}
           </form>
         </SecureCommSection>
