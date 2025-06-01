@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaShieldAlt } from 'react-icons/fa';
 
@@ -10,18 +9,8 @@ const NavContainer = styled.nav`
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(13, 15, 25, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(90, 143, 255, 0.1);
-`;
-
-const NavContent = styled.div`
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: transparent;
+  padding: 1.5rem 2rem;
 `;
 
 const LogoContainer = styled(Link)`
@@ -31,6 +20,7 @@ const LogoContainer = styled(Link)`
   text-decoration: none;
   position: relative;
   padding: 0.5rem;
+  width: fit-content;
 
   &::before {
     content: '';
@@ -135,45 +125,15 @@ const LogoText = styled.div`
   }
 `;
 
-const NavLinks = styled.div`
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const NavLink = styled(Link)`
-  color: #A1A1AA;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.2s;
-
-  &:hover {
-    color: #5a8fff;
-  }
-`;
-
-const Navbar = ({ mode, setMode }) => {
+const Navbar = () => {
   return (
     <NavContainer>
-      <NavContent>
-        <LogoContainer to="/">
-          <LogoIcon>
-            <FaShieldAlt />
-          </LogoIcon>
-          <LogoText>NAZIF KEYAN</LogoText>
-        </LogoContainer>
-        <NavLinks>
-          <NavLink to="/#about">About</NavLink>
-          <NavLink to="/#projects">Projects</NavLink>
-          <NavLink to="/#resources">Resources</NavLink>
-          <NavLink to="/#contact">Contact</NavLink>
-        </NavLinks>
-      </NavContent>
+      <LogoContainer to="/">
+        <LogoIcon>
+          <FaShieldAlt />
+        </LogoIcon>
+        <LogoText>NAZIF KEYAN</LogoText>
+      </LogoContainer>
     </NavContainer>
   );
 };
