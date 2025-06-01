@@ -62,12 +62,7 @@ const ProjectCard = styled(motion.div)`
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(${props => props.theme.blur.md});
-
-  &:hover {
-    border-color: ${props => props.theme.colors.card.hover.border};
-    transform: translateY(-5px);
-    transition: all 0.3s ease;
-  }
+  transition: all 0.3s ease;
 
   &::before {
     content: '';
@@ -77,6 +72,19 @@ const ProjectCard = styled(motion.div)`
     right: 0;
     height: 4px;
     background: linear-gradient(90deg, #1aff8b 0%, #5a8fff 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  &:hover {
+    border-color: ${props => props.theme.colors.card.hover.border};
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(90, 143, 255, 0.25);
+
+    &::before {
+      transform: scaleX(1);
+    }
   }
 `;
 
@@ -191,32 +199,71 @@ const Projects = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 20,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        mass: 1
+      }
+    }
+  };
+
   return (
     <ProjectSection id="projects">
       <GlowingBackground />
       <ContentWrapper>
         <SectionTitle
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
           Featured Projects
         </SectionTitle>
         <SectionSubtitle
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
           A showcase of web development and cybersecurity innovations
         </SectionSubtitle>
 
-        <ProjectGrid>
+        <ProjectGrid
+          as={motion.div}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {projects.map((project, index) => (
             <ProjectCard
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              variants={cardVariants}
+              whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
             >
               <ProjectIcon>{project.icon}</ProjectIcon>
               <ProjectTitle>{project.title}</ProjectTitle>
