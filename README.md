@@ -6,12 +6,11 @@
   [![Vercel Status](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel)](https://nazif-keyan.vercel.app)
   [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
   [![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
-  [![OpenRouter](https://img.shields.io/badge/OpenRouter-AI-green?style=for-the-badge&logo=openai)](https://openrouter.ai/)
 </div>
 
 ## 🌟 Features
 
-- 🤖 **Dual AI Chatbots** - Interactive AI assistants powered by OpenRouter API
+- 🤖 **AI Integration** - Interactive AI assistants for portfolio exploration
 - 🎨 **Modern UI/UX** - Sleek design with particle animations and custom cursor
 - 🔒 **Security-First Approach** - Implementing cybersecurity best practices
 - 📱 **Responsive Design** - Seamless experience across all devices
@@ -23,7 +22,7 @@
 - **Frontend Framework**: React with Vite
 - **Styling**: Emotion (CSS-in-JS)
 - **State Management**: React Hooks
-- **AI Integration**: OpenRouter API
+- **AI Integration**: Advanced AI Models
 - **Animations**: Framer Motion
 - **Icons**: React Icons
 - **Deployment**: Vercel
@@ -45,7 +44,7 @@
 3. **Set up environment variables**
    ```bash
    cp .env.example .env
-   # Add your OpenRouter API key to .env
+   # Add your environment variables
    ```
 
 4. **Start development server**
