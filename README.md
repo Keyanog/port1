@@ -1,14 +1,114 @@
-# React + Vite
+# 🚀 Nazif Keyan's Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+  <img src="public/NK.svg" alt="NK Logo" width="120" height="120" />
+  
+  [![Vercel Status](https://img.shields.io/badge/Vercel-Deployed-success?style=for-the-badge&logo=vercel)](https://nazif-keyan.vercel.app)
+  [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
+  [![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+  [![OpenRouter](https://img.shields.io/badge/OpenRouter-AI-green?style=for-the-badge&logo=openai)](https://openrouter.ai/)
+</div>
 
-Currently, two official plugins are available:
+## 🌟 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🤖 **Dual AI Chatbots** - Interactive AI assistants powered by OpenRouter API
+- 🎨 **Modern UI/UX** - Sleek design with particle animations and custom cursor
+- 🔒 **Security-First Approach** - Implementing cybersecurity best practices
+- 📱 **Responsive Design** - Seamless experience across all devices
+- ⚡ **High Performance** - Built with Vite for optimal loading speeds
+- 🌈 **Interactive Elements** - Dynamic components and smooth animations
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Portofoliolatest
-# Portofoliolatest
+- **Frontend Framework**: React with Vite
+- **Styling**: Emotion (CSS-in-JS)
+- **State Management**: React Hooks
+- **AI Integration**: OpenRouter API
+- **Animations**: Framer Motion
+- **Icons**: React Icons
+- **Deployment**: Vercel
+- **Version Control**: Git & GitHub
+
+## 🚀 Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Keyanog/port1.git
+   cd portfolio-emotion
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Add your OpenRouter API key to .env
+   ```
+
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+## 🔐 Security Features
+
+- ✅ Secure API key handling
+- ✅ Environment variable protection
+- ✅ Input validation and sanitization
+- ✅ Modern security headers
+- ✅ Protected routes and endpoints
+
+## 🎯 Core Components
+
+- **AI Chatbots**: Interactive assistants for portfolio exploration
+- **Particle Background**: Dynamic visual elements
+- **Custom Cursor**: Enhanced user interaction
+- **Contact Form**: Secure communication channel
+- **Project Showcase**: Interactive project display
+- **Skill Visualization**: Dynamic skill representation
+
+## 📦 Project Structure
+
+```
+portfolio-emotion/
+├── public/
+│   └── NK.svg
+├── src/
+│   ├── components/
+│   │   ├── SecondChatbot.jsx
+│   │   ├── CustomCursor.jsx
+│   │   └── ...
+│   ├── data/
+│   │   └── personal_info.txt
+│   └── App.jsx
+├── .env.example
+└── package.json
+```
+
+## 🌐 Live Demo
+
+Visit the live portfolio: [nazif-keyan.vercel.app](https://nazif-keyan.vercel.app)
+
+## 🤝 Connect With Me
+
+- 📧 Email: nazif.keyan@gmail.com
+- 💼 GitHub: [@Keyanog](https://github.com/Keyanog)
+- 🔗 LinkedIn: [Nazif Keyan](#)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  <sub>Built with 💚 by Nazif Keyan</sub>
+</div>
