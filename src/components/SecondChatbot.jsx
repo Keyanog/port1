@@ -214,6 +214,13 @@ const SecondChatbot = () => {
   const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY;
   const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
+  // Debug log for API key
+  useEffect(() => {
+    if (!OPENROUTER_API_KEY) {
+      console.warn('OpenRouter API key is not set. Please check your .env file.');
+    }
+  }, [OPENROUTER_API_KEY]);
+
   useEffect(() => {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
@@ -295,6 +302,7 @@ You MUST ONLY answer questions based on the following information about Nazif Ke
       // Start typing animation for the new message
       typeMessage(messages.length + 1, aiResponse);
     } catch (error) {
+      console.error('Error sending message:', error);
       const errorMessage = "I'm having trouble connecting right now. Please try again later.";
       const errorMessageObj = { 
         isUser: false, 
