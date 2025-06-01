@@ -74,8 +74,8 @@ function App() {
           <LearningResources />
           <FutureGoals />
           {/* <Skills /> */}
-          <Contact />
           <Projects />
+          <Contact />
         </main>
         <Footer />
         <SecondChatbot />

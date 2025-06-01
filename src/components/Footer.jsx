@@ -1,78 +1,114 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
   width: 100%;
-  padding: 4rem 0 3rem 0;
-  background: ${props => props.theme.colors.glass.bg};
-  backdrop-filter: blur(${props => props.theme.blur.md});
-  border-top: 2px solid;
-  border-image: ${props => props.theme.colors.gradients.primary} 1;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(90, 143, 255, 0.15), transparent 70%);
-    z-index: -1;
-  }
+  padding: 4rem 0;
+  background: #0B0F1A;
+  color: #fff;
 `;
 
 const FooterContent = styled.div`
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
   
-  @media (max-width: 1200px) {
-    padding: 0 1.5rem;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 `;
 
-const FooterText = styled(motion.p)`
-  color: ${props => props.theme.colors.text.primary};
-  font-size: 1.1rem;
-  text-align: center;
+const FooterSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const Logo = styled(Link)`
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const Description = styled.p`
+  color: #A1A1AA;
   line-height: 1.6;
   margin: 0;
 `;
 
-const Heart = styled(motion.span)`
-  color: ${props => props.theme.colors.accent.danger};
-  display: inline-block;
-  margin: 0 0.3rem;
-  font-size: 1.2em;
-  filter: drop-shadow(0 0 8px rgba(255, 90, 90, 0.5));
+const FooterTitle = styled.h3`
+  font-size: 1.2rem;
+  margin: 0;
+  color: #fff;
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const SocialIcon = styled.a`
+  color: #A1A1AA;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+  
+  &:hover {
+    color: #fff;
+  }
+`;
+
+const Copyright = styled.div`
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #2D2D2D;
+  text-align: center;
+  color: #A1A1AA;
+  font-size: 0.9rem;
 `;
 
 const Footer = () => (
   <FooterContainer>
     <FooterContent>
-      <FooterText
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-      </FooterText>
-      <FooterText
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        style={{ fontSize: '0.9rem', color: props => props.theme.colors.text.muted }}
-      >
-        
-      </FooterText>
+      <FooterSection>
+        <Logo to="/">
+          Nazif Keyan
+        </Logo>
+        <Description>
+        Advancing the frontiers of web development and computer science to build innovative, scalable solutions for modern digital challenges.
+        </Description>
+      </FooterSection>
+
+      <FooterSection>
+        <FooterTitle>Connect</FooterTitle>
+        <SocialLinks>
+          <SocialIcon href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <FaGithub />
+          </SocialIcon>
+          <SocialIcon href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <FaLinkedin />
+          </SocialIcon>
+          <SocialIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <FaTwitter />
+          </SocialIcon>
+          <SocialIcon href="mailto:contact@example.com">
+            <FaEnvelope />
+          </SocialIcon>
+        </SocialLinks>
+      </FooterSection>
     </FooterContent>
+    <Copyright>
+      © 2025 Nazif Keyan. All rights reserved.
+    </Copyright>
   </FooterContainer>
 );
 

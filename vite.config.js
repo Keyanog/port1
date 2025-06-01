@@ -14,5 +14,8 @@ export default defineConfig({
         manualChunks: undefined
       }
     }
+  },
+  define: {
+    'process.env.VITE_APP_TITLE': JSON.stringify('Nazif Keyan')
   }
 })

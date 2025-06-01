@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaLock, FaPaperPlane, FaMicrophone, FaCog, FaPlus } from 'react-icons/fa';
+import { FaLock, FaPaperPlane, FaMicrophone, FaCog, FaPlus, FaEnvelope, FaMapMarkerAlt, FaComments, FaClock, FaShieldAlt, FaLinkedin, FaGithub, FaDiscord } from 'react-icons/fa';
+import { SiTryhackme } from 'react-icons/si';
 
 const ContactSection = styled(motion.section)`
   min-height: 90vh;
@@ -34,12 +35,147 @@ const ContentWrapper = styled(motion.div)`
   position: relative;
   z-index: 1;
   padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  
   @media (max-width: 900px) {
+    grid-template-columns: 1fr;
     padding: 0 1.5rem;
   }
 `;
 
-const GradientHeadline = styled(motion.h1)`
+const BaseSection = styled(motion.div)`
+  background: rgba(24, 26, 32, 0.98);
+  border: 2px solid #23263a;
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: rgba(35, 38, 58, 0.5);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+`;
+
+const ContactInfoSection = styled(BaseSection)`
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: rgba(13, 15, 25, 0.95);
+`;
+
+const SecureCommSection = styled(BaseSection)`
+  padding-top: 4rem;
+`;
+
+const SectionHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  
+  svg {
+    color: #1aff8b;
+    font-size: 1.4rem;
+  }
+`;
+
+const HeaderTitle = styled.h2`
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 500;
+`;
+
+const HeaderDescription = styled.p`
+  color: #A1A1AA;
+  margin: 0.5rem 0 2rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+`;
+
+const ContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem;
+  transition: background-color 0.2s;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  svg {
+    color: #5a8fff;
+    font-size: 1.4rem;
+  }
+`;
+
+const IconWrapper = styled.div`
+  width: 40px;
+  height: 40px;
+  background: rgba(90, 143, 255, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    font-size: 1.2rem;
+  }
+`;
+
+const ContactDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ContactLabel = styled.h3`
+  color: #fff;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+`;
+
+const ContactText = styled.p`
+  color: #A1A1AA;
+  margin: 0.2rem 0 0 0;
+  font-size: 0.9rem;
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.3rem;
+  
+  a {
+    color: #A1A1AA;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+    
+    &:hover {
+      color: #5a8fff;
+    }
+  }
+`;
+
+const MainHeading = styled(motion.h1)`
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   background: linear-gradient(90deg, #5a8fff 0%, #b16cff 100%);
@@ -48,17 +184,17 @@ const GradientHeadline = styled(motion.h1)`
   background-clip: text;
   text-fill-color: transparent;
   margin-bottom: 1.2rem;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  text-align: center;
 `;
 
-const Tagline = styled(motion.p)`
+const MainDescription = styled(motion.p)`
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   color: ${props => props.theme.colors.text.secondary};
-  margin-bottom: 2.5rem;
-  max-width: 600px;
+  margin-bottom: 4rem;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
   line-height: 1.6;
 `;
 
@@ -117,9 +253,11 @@ const TerminalButton = styled.div`
 `;
 
 const TerminalTitle = styled.div`
-  color: ${props => props.theme.colors.text.secondary};
+  color: #A1A1AA;
   font-size: 0.9rem;
   margin-left: 1rem;
+  font-family: ${props => props.theme.typography.fontFamily.mono};
+  letter-spacing: 0.5px;
 `;
 
 const FormInput = styled.input`
@@ -288,26 +426,94 @@ const Contact = () => {
           }}
         />
       ))}
+      
+      <MainHeading
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        Let's Connect Securely
+      </MainHeading>
+      
+      <MainDescription
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        Choose your preferred secure communication channel or send an encrypted message directly through our secure form.
+      </MainDescription>
+
       <ContentWrapper>
-        <GradientHeadline
+        <ContactInfoSection
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Secure Communication
-        </GradientHeadline>
-        <Tagline
+          <div>
+            <SectionHeader>
+              <FaShieldAlt />
+              <HeaderTitle>Secure Channels</HeaderTitle>
+            </SectionHeader>
+            <HeaderDescription>
+              Direct communication channels are available through multiple secure protocols. Select your preferred method of contact below.
+            </HeaderDescription>
+          </div>
+
+          <ContactItem as="a" href="mailto:nazif.keyan@gmail.com">
+            <IconWrapper>
+              <FaEnvelope />
+            </IconWrapper>
+            <ContactDetails>
+              <ContactLabel>Email Protocol</ContactLabel>
+              <ContactText>nazif.keyan@gmail.com</ContactText>
+            </ContactDetails>
+          </ContactItem>
+
+          <ContactItem as="a" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <IconWrapper>
+              <FaLinkedin />
+            </IconWrapper>
+            <ContactDetails>
+              <ContactLabel>LinkedIn Connect</ContactLabel>
+              <ContactText>linkedin.com/in/nazif-keyan</ContactText>
+            </ContactDetails>
+          </ContactItem>
+
+          <ContactItem as="a" href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <IconWrapper>
+              <FaGithub />
+            </IconWrapper>
+            <ContactDetails>
+              <ContactLabel>GitHub Repository</ContactLabel>
+              <ContactText>github.com/Keyanog</ContactText>
+            </ContactDetails>
+          </ContactItem>
+
+          <ContactItem as="a" href="https://tryhackme.com" target="_blank" rel="noopener noreferrer">
+            <IconWrapper>
+              <SiTryhackme />
+            </IconWrapper>
+            <ContactDetails>
+              <ContactLabel>TryHackMe</ContactLabel>
+              <ContactText>tryhackme.com/p/nazif</ContactText>
+            </ContactDetails>
+          </ContactItem>
+
+          <ContactItem as="a" href="https://discord.com" target="_blank" rel="noopener noreferrer">
+            <IconWrapper>
+              <FaDiscord />
+            </IconWrapper>
+            <ContactDetails>
+              <ContactLabel>Discord</ContactLabel>
+              <ContactText>discord.com/users/nazif</ContactText>
+            </ContactDetails>
+          </ContactItem>
+        </ContactInfoSection>
+
+        <SecureCommSection
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Establish a secure connection to transmit your message through our encrypted channel.
-        </Tagline>
-
-        <TerminalWrapper
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
         >
           <TerminalHeader>
             <TerminalButton color="#ff5f56" />
@@ -316,7 +522,7 @@ const Contact = () => {
             <TerminalTitle>SECURE-TRANSMISSION://ENCRYPT</TerminalTitle>
           </TerminalHeader>
           
-          <form onSubmit={handleFormSubmit} style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+          <form style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
             <div>
               <label htmlFor="name" style={{ color: '#5a8fff', marginBottom: '0.5rem', display: 'block' }}>SENDER_ID</label>
               <FormInput
@@ -376,7 +582,7 @@ const Contact = () => {
               </div>
             )}
           </form>
-        </TerminalWrapper>
+        </SecureCommSection>
       </ContentWrapper>
     </ContactSection>
   );
