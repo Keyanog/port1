@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaInstagram, FaDiscord } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
@@ -91,16 +91,22 @@ const Footer = () => (
       <FooterSection>
         <FooterTitle>Connect</FooterTitle>
         <SocialLinks>
-          <SocialIcon href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <SocialIcon href="https://github.com/Keyanog" target="_blank" rel="noopener noreferrer">
             <FaGithub />
           </SocialIcon>
-          <SocialIcon href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <SocialIcon href="https://www.linkedin.com/in/nazifkeyan/" target="_blank" rel="noopener noreferrer">
             <FaLinkedin />
           </SocialIcon>
-          <SocialIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <SocialIcon href="https://x.com/_Keyanooo_" target="_blank" rel="noopener noreferrer">
             <FaTwitter />
           </SocialIcon>
-          <SocialIcon href="mailto:contact@example.com">
+          <SocialIcon href="https://www.instagram.com/_notkeyanatall_/" target="_blank" rel="noopener noreferrer">
+            <FaInstagram />
+          </SocialIcon>
+          <SocialIcon href="https://discord.com/users/1nazif1" target="_blank" rel="noopener noreferrer">
+            <FaDiscord />
+          </SocialIcon>
+          <SocialIcon href="mailto:nazif.keyan@gmail.com">
             <FaEnvelope />
           </SocialIcon>
         </SocialLinks>

@@ -469,17 +469,17 @@ const Contact = () => {
             </ContactDetails>
           </ContactItem>
 
-          <ContactItem as="a" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <ContactItem as="a" href="https://www.linkedin.com/in/nazifkeyan/" target="_blank" rel="noopener noreferrer">
             <IconWrapper>
               <FaLinkedin />
             </IconWrapper>
             <ContactDetails>
               <ContactLabel>LinkedIn Connect</ContactLabel>
-              <ContactText>linkedin.com/in/nazif-keyan</ContactText>
+              <ContactText>linkedin.com/in/nazifkeyan</ContactText>
             </ContactDetails>
           </ContactItem>
 
-          <ContactItem as="a" href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <ContactItem as="a" href="https://github.com/Keyanog" target="_blank" rel="noopener noreferrer">
             <IconWrapper>
               <FaGithub />
             </IconWrapper>
@@ -499,13 +499,13 @@ const Contact = () => {
             </ContactDetails>
           </ContactItem>
 
-          <ContactItem as="a" href="https://discord.com" target="_blank" rel="noopener noreferrer">
+          <ContactItem as="a" href="https://discord.com/users/1nazif1" target="_blank" rel="noopener noreferrer">
             <IconWrapper>
               <FaDiscord />
             </IconWrapper>
             <ContactDetails>
               <ContactLabel>Discord</ContactLabel>
-              <ContactText>discord.com/users/nazif</ContactText>
+              <ContactText>1nazif1</ContactText>
             </ContactDetails>
           </ContactItem>
         </ContactInfoSection>
